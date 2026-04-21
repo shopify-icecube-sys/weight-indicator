@@ -33,7 +33,7 @@ function Extension() {
 
   return (
     <s-admin-block
-      heading={isOverLimit ? "🛑 ATTENTION: ORDER IS OVERWEIGHT" : "Order Weight Monitor"}
+      heading={isOverLimit ? "ATTENTION: ORDER IS OVERWEIGHT" : "Order Weight Monitor"}
     >
       <s-stack direction="block" gap="base">
         <s-box padding="base" background={isOverLimit ? "critical-subdued" : "subdued"} borderRadius="base">
@@ -54,7 +54,7 @@ function Extension() {
             <s-stack direction="block" gap="extra-tight">
               <s-text type="strong">CRITICAL ALERT</s-text>
               <s-text>
-                This order is <b>{weightInKg?.toFixed(2)} kg</b>. This exceeds the 22,000kg limit.
+                You've hit the weight limit for a container. Please process another order to proceed
               </s-text>
             </s-stack>
           </s-banner>
