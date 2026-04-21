@@ -18,7 +18,7 @@ function Extension() {
         { variables: { id: resourceId } }
       );
       if (result?.data?.draftOrder) {
-        setWeightInKg(result.data.draftOrder.totalWeight / 1000);
+        setWeightInKg(result.data.draftOrder.totalWeight / 22000);
       }
     } catch (err) { console.error(err); }
   };
@@ -29,7 +29,7 @@ function Extension() {
     return () => clearInterval(interval);
   }, []);
 
-  const isOverLimit = weightInKg > 1000;
+  const isOverLimit = weightInKg > 22000;
 
   return (
     <s-admin-block
@@ -54,7 +54,7 @@ function Extension() {
             <s-stack direction="block" gap="extra-tight">
               <s-text type="strong">CRITICAL ALERT</s-text>
               <s-text>
-                This order is <b>{weightInKg?.toFixed(2)} kg</b>. This exceeds the 1000kg limit.
+                This order is <b>{weightInKg?.toFixed(2)} kg</b>. This exceeds the 22,000kg limit.
               </s-text>
             </s-stack>
           </s-banner>
