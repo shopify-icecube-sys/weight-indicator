@@ -18,7 +18,7 @@ function Extension() {
         { variables: { id: resourceId } }
       );
       if (result?.data?.draftOrder) {
-        setWeightInKg(result.data.draftOrder.totalWeight / 22000);
+        setWeightInKg(result.data.draftOrder.totalWeight / 1000);
       }
     } catch (err) { console.error(err); }
   };
