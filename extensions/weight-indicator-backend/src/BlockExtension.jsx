@@ -22,6 +22,7 @@ function Extension() {
                 quantity
                 variant {
                   weight
+                  weightUnit
                 }
               }
             }
@@ -32,16 +33,27 @@ function Extension() {
 
       const items = result?.data?.draftOrder?.lineItems?.nodes || [];
 
-      let totalWeightGrams = 0;
+      let totalKg = 0;
 
       items.forEach((item) => {
-        const weight = item?.variant?.weight || 0; // grams
+        const weight = item?.variant?.weight || 0;
+        const unit = item?.variant?.weightUnit || "KILOGRAMS";
         const qty = item?.quantity || 0;
 
-        totalWeightGrams += weight * qty;
-      });
+        let weightInKg = 0;
+        // Convert to KG based on the unit returned
+        if (unit === "KILOGRAMS" || unit === "KG") {
+          weightInKg = weight;
+        } else if (unit === "GRAMS" || unit === "G") {
+          weightInKg = weight / 1000;
+        } else if (unit === "POUNDS" || unit === "LB") {
+          weightInKg = weight * 0.453592;
+        } else if (unit === "OUNCES" || unit === "OZ") {
+          weightInKg = weight * 0.0283495;
+        }
 
-      const totalKg = totalWeightGrams / 1000;
+        totalKg += weightInKg * qty;
+      });
 
       setWeightInKg(totalKg);
     } catch (err) {
